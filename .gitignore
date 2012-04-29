@@ -16,3 +16,6 @@
 
 # Ignore RubyMine settings
 /.idea
+
+# Ignore binstubs
+bundler_stubs/
