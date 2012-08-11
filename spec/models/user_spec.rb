@@ -94,4 +94,9 @@ describe User do
     end
     it { should_not be_valid }
   end
+
+  describe "can't save when email address is taken" do
+    before { @user.dup.save }
+    it { expect {@user.save validate: false}.to raise_error(ActiveRecord::StatementInvalid) }
+  end
 end
