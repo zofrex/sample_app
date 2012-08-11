@@ -99,4 +99,13 @@ describe User do
     before { @user.dup.save }
     it { expect {@user.save validate: false}.to raise_error(ActiveRecord::StatementInvalid) }
   end
+
+  describe "can't save when email address is taken (case-insensitive)" do
+    before do
+      dup = @user.dup
+      dup.email.swapcase!
+      dup.save
+    end
+    it { expect {@user.save validate: false}.to raise_error(ActiveRecord::StatementInvalid) }
+  end
 end
