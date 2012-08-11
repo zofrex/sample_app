@@ -6,3 +6,5 @@ rvm:
 before_script:
   - "rake db:migrate RAILS_ENV=test"
 bundler_args: --without production development
+notifications:
+  email: false
