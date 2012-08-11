@@ -80,4 +80,9 @@ describe User do
       end
     end
   end
+
+  describe "when email address is taken" do
+    before { @user.dup.save }
+    it { should_not be_valid }
+  end
 end
