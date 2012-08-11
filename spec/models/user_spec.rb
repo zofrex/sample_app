@@ -81,12 +81,12 @@ describe User do
     end
   end
 
-  describe "when email address is taken" do
+  describe "invalid when email address is taken" do
     before { @user.dup.save }
     it { should_not be_valid }
   end
 
-  describe "when email address is duped (case-insensitive)" do
+  describe "invalid when email address is taken (case-insensitive)" do
     before do
       dup = @user.dup
       dup.email.swapcase!
