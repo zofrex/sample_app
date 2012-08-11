@@ -23,6 +23,8 @@ describe User do
   it { should respond_to :password }
   it { should respond_to :password_confirm }
 
+  it { should be_valid }
+
   describe "when name is not present" do
     before { @user.name = " " }
     it { should_not be_valid }
