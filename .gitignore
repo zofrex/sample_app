@@ -19,3 +19,6 @@
 
 # Ignore binstubs
 bundler_stubs/
+
+# Ignore precompiled assets
+/public/assets/
