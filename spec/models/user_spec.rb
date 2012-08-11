@@ -85,4 +85,13 @@ describe User do
     before { @user.dup.save }
     it { should_not be_valid }
   end
+
+  describe "when email address is duped (case-insensitive)" do
+    before do
+      dup = @user.dup
+      dup.email.swapcase!
+      dup.save
+    end
+    it { should_not be_valid }
+  end
 end
