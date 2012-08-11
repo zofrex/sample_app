@@ -63,8 +63,7 @@ describe User do
       joe@example.com
       "Abc\\@def"@example.com
       "Fred\\\ Bloggs"@example.com
-      "Joe\\Blow"@example.com
-      "Abc\\@def"@example.com
+      "Joe.\\\\"Blow@example.com
       customer/department=shipping@example.com
       $A12345@example.com
       !def!xyz%abc@example.com
