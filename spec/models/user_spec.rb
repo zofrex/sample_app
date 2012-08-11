@@ -33,4 +33,52 @@ describe User do
     before { @user.name = "a" * 51 }
     it { should_not be_valid }
   end
+
+  describe "when email format is invalid" do
+    addresses = %w[
+      NotAnEmail
+      @NotAnEmail
+      .wooly@example.com
+      wo..oly@example.com
+      pootietang.@example.com
+      .@example.com
+      Ima\ Fool@example.com
+      user@foo,com
+      user_at_foo.org
+      example.user@foo.
+      foo@bar_baz.com
+      foo@bar+baz.com
+    ]
+
+    addresses.each do |invalid_address|
+      describe ": #{invalid_address}" do
+        before { @user.email = invalid_address }
+        it { should_not be_valid }
+      end
+    end
+  end
+
+  describe "when email format is valid" do
+    addresses = %w[
+      joe@example.com
+      "Abc\\@def"@example.com
+      "Fred\\\ Bloggs"@example.com
+      "Joe\\Blow"@example.com
+      "Abc\\@def"@example.com
+      customer/department=shipping@example.com
+      $A12345@example.com
+      !def!xyz%abc@example.com
+      _somename@example.com
+      user@foo.COM
+      A_US-ER@f.b.org
+      frst.lst@foo.jp
+      a+b@baz.cn
+    ]
+    addresses.each do |valid_address|
+      describe ": #{valid_address}" do
+        before { @user.email = valid_address }
+        it { should be_valid }
+      end
+    end
+  end
 end
