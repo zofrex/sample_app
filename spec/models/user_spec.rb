@@ -149,4 +149,14 @@ describe User do
     before { @user.password = @user.password_confirmation = "a"*5 }
     it { should be_invalid }
   end
+
+  describe "when saving second account with different email" do
+    before do
+      dup = @user.dup
+      dup.email = "user2@example.com"
+      dup.save
+    end
+    it { should be_valid }
+    specify { @user.save.should be_true }
+  end
 end
